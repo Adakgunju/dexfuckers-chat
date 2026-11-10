@@ -4,6 +4,18 @@ const ALLOWED_ORIGINS = new Set([
   "http://localhost:3000",
 ]);
 
+function isAllowedOrigin(origin) {
+  if (ALLOWED_ORIGINS.has(origin)) return true;
+  try {
+    const parsed = new URL(origin);
+    return parsed.protocol === "https:" &&
+      (parsed.hostname === "dexfuckers.pages.dev" ||
+        parsed.hostname.endsWith(".dexfuckers.pages.dev"));
+  } catch {
+    return false;
+  }
+}
+
 const MAX_MESSAGE_LENGTH = 500;
 const MESSAGE_WINDOW_MS = 5000;
 const MESSAGE_WINDOW_LIMIT = 8;
@@ -39,7 +51,7 @@ export default {
     }
 
     const origin = request.headers.get("Origin");
-    if (!origin || !ALLOWED_ORIGINS.has(origin)) {
+    if (!origin || !isAllowedOrigin(origin)) {
       return json({ error: "Origin not allowed" }, 403);
     }
 
