@@ -5,7 +5,8 @@
   "packageManager": "npm@10.9.9",
   "scripts": {
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy"
+    "deploy": "wrangler deploy",
+    "check": "wrangler deploy --dry-run"
   },
   "devDependencies": {
     "wrangler": "4.159.0"
