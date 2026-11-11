@@ -140,7 +140,10 @@ export class ChatHub {
 
   sendPresence() {
     const count = [...this.sessions.values()].filter((session) => session.mode === "public").length;
-    this.broadcastPublic({ type: "presence", count });
+    const payload = { type: "presence", count };
+    for (const [ws, session] of this.sessions.entries()) {
+      if (session.mode === "public") this.send(ws, payload);
+    }
   }
 
   updateSession(ws, session) {
