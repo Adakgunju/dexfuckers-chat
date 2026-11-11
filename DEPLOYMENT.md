@@ -1,23 +1,21 @@
 # Cloudflare Worker Deployment
 
-This repository deploys the `dexfuckers-chat` Worker.
-
-## Cloudflare Workers Builds
+Cloudflare Workers Builds settings for this repository:
 
 - Repository: `Adakgunju/dexfuckers-chat`
 - Production branch: `main`
 - Root directory: `/`
-- Build command: leave empty
-- Deploy command: `npx wrangler deploy`
-- Version command: leave empty
+- Build command: leave blank
+- Deploy command: `npm run deploy`
+- Version command: leave blank
 
-The Worker configuration is in `wrangler.toml`. It declares the `CHAT_HUB` Durable Object binding and the initial SQLite-backed Durable Object migration. Do not remove or rename the binding or migration when deploying.
+The repository now contains a `package.json` with a local Wrangler dependency and a deploy script. Workers Builds should install project dependencies and use the local Wrangler version rather than downloading an unpinned CLI at deploy time.
 
-## Expected deployment
+The Wrangler configuration is `wrangler.toml`. It declares the `CHAT_HUB` Durable Object binding and the initial SQLite-backed Durable Object migration. Do not rename or remove either.
 
-A successful deployment should publish `dexfuckers-chat` and expose:
+Expected endpoints after a successful deployment:
 
 - Health check: `https://dexfuckers-chat.pcaticom.workers.dev/health`
-- WebSocket endpoint: `wss://dexfuckers-chat.pcaticom.workers.dev/ws`
+- WebSocket: `wss://dexfuckers-chat.pcaticom.workers.dev/ws`
 
 The health endpoint should return JSON with `ok: true`, `service: "dexfuckers-chat"`, and `realtime: "websocket"`.
