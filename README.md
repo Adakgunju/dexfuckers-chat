@@ -57,7 +57,7 @@ Changing this variable requires a new Pages build.
 
 ## Security and operational notes
 
-- The Worker accepts browser connections only from the production DEXFuckers origins and localhost development.
+- The Worker accepts browser connections from `https://dexfuckers.com`, `https://www.dexfuckers.com`, `http://localhost:3000`, and HTTPS Cloudflare Pages preview hostnames under `dexfuckers.pages.dev`.
 - Messages are plain text, limited to 500 characters, and rate-limited per socket.
 - The server does not persist public or private chat messages.
 - Anonymous 1:1 reports are stored in Durable Object storage. A production moderation workflow and report-review interface are still required before broad public launch.
