@@ -1,0 +1,13 @@
+{
+  "name": "dexfuckers-chat",
+  "private": true,
+  "version": "1.0.0",
+  "packageManager": "npm@10.9.9",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
